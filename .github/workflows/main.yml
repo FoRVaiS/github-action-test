@@ -1,0 +1,23 @@
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ping
+        run: |
+          echo 'pong'
+  production-echo:
+    runs-on: ubuntu-latest
+    if: |
+      github.ref_name == 'production' &&
+      github.ref_type == 'tag'
+    steps:
+      - name: prod
+        run: |
+          echo 'prod!'
+
+
